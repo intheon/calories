@@ -9,14 +9,6 @@ $connect = mysqli_connect($host,$username,$password,$database);
 
 $data = mysqli_query($connect,'SELECT exercise_name,calories FROM exercise_calories');
 
-class exercises
-{
-	public $exercise_name = "";
-	public $exercise_calories = "";
-}
-
-$count = 0;
-
 $json = array();
 
 

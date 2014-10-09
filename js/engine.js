@@ -11,45 +11,57 @@ function gatherValues()
 		success: function(response)
 		{
 			addToHTML(response);
+			return response;
 		}
 	});
 }
 
-var html = [];
 
+var html = [];
+var data;
 function addToHTML(jsondata)
 {
-	var data = JSON.parse(jsondata);
+	data = JSON.parse(jsondata);
 
-	console.log(jsondata);
-	//for (key in data)
-	//{
-		//$("#output").append(data[key].exercise_name + " spends " + data[key].calories + " calories per minute <br />");
+	for (key in data)
+	{
+		$("#output").append(data[key].exercise_name + " spends " + data[key].calories + " calories per minute <br />");
 
-		//html.push("<option value='" + data[key].exercise_name + "'>" + data[key].exercise_name +  "</option>");
-	//}
+		html.push("<option value='" + data[key].exercise_name + "'>" + data[key].exercise_name +  "</option>");
+	}
 
 
-	//$("#form").append("<form>\
-	//	<select id='select_exercise'>\
-	//		" + html + "\
-	//	</select>\
-	//	<input type='text' id='input_calories' onkeypress='hoDown(this.value,select_exercise.value)'>\
-	//	</form>");
+	$("#form").append("<form>\
+		<select id='select_exercise'>\
+			" + html + "\
+		</select>\
+		<input type='text' id='input_minutes' onchange='hoDown(this.value,select_exercise.value)'>\
+		</form>");
 
 }
 
-console.log(addToHTML());
+var calorieTotals = [];
 
-function hoDown(value,exercise)
+function hoDown(minutes,exercise)
 {
-	if (!value)
+
+	if (!minutes || isNaN(minutes))
 	{
 		return false;
 	}
 
-	//var total = value * data.
 
+	for (i = 0; i <= data.length - 1; i++)
+	{
+		if (data[i].exercise_name == exercise)
+		{
+			calorieTotals.push(data[i].calories*minutes);
+			$("#header").append("<h2>"+minutes+" minutes of "+exercise+"</h2>");
+			$("#content").append("<div>"+data[i].calories*minutes+"</div>");
+			$("#total").html("<h3>Total: "+eval(calorieTotals.join('+'))+"</h3>");
+			break;
+		}
+	}
 
 
 

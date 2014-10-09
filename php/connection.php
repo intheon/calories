@@ -15,6 +15,7 @@ $json = array();
 while($row = mysqli_fetch_assoc($data))
 {
 		$json[] =  $row;
+		//echo $row;
 }
 
 mysqli_close($connect);

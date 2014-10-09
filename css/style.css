@@ -1,0 +1,24 @@
+body
+{
+	font-family:courier;
+}
+#table
+{
+	padding:2%;
+}
+#header
+{
+	float:left;
+	padding:1%;
+}
+#content
+{
+	float:left;
+	padding:1%;
+}
+#total
+{
+	padding:1%;
+	position:absolute;
+	bottom:0;
+}

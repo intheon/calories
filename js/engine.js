@@ -30,14 +30,12 @@ function addToHTML(jsondata)
 		html.push("<option value='" + data[key].exercise_name + "'>" + data[key].exercise_name +  "</option>");
 	}
 
-
 	$("#form").append("<form>\
 		<select id='select_exercise'>\
 			" + html + "\
 		</select>\
 		<input type='text' id='input_minutes' onchange='hoDown(this.value,select_exercise.value)'>\
 		</form>");
-
 }
 
 var calorieTotals = [];
@@ -50,21 +48,17 @@ function hoDown(minutes,exercise)
 		return false;
 	}
 
-
 	for (i = 0; i <= data.length - 1; i++)
 	{
 		if (data[i].exercise_name == exercise)
 		{
 			calorieTotals.push(data[i].calories*minutes);
-			$("#header").append("<h2>"+minutes+" minutes of "+exercise+"</h2>");
+			$("#header").append("<div>"+minutes+" minutes of "+exercise+"</div>");
 			$("#content").append("<div>"+data[i].calories*minutes+"</div>");
 			$("#total").html("<h3>Total: "+eval(calorieTotals.join('+'))+"</h3>");
 			break;
 		}
 	}
-
-
-
 
 }
 
